@@ -1,0 +1,36 @@
+cms-yc-test-1 项目 中的 index.jsp 里面 openKuayu() 方法 window.open()打开 同域的 一个页面 进行相应的 跨域 操作
+
+cms-yc-test 项目 (另一个要和 本项目 进行跨域的项目)
+
+main (父层)  为 本项目的   kuayu.jsp (cms-yc-test-1 项目 )
+(子层【就是 要 跨域  的 iframe ，并且嵌在  main 父层里面 】)  cms-yc-test index.jsp
+
+
+两个中间件 execA.jsp, execB.jsp 分别在 cms-yc-test-1 和 cms-yc-test 两个跨域的 项目中
+
+提示 (cms-yc-test-1 想象里面有 A.jsp  和    cms-yc-test 里面是 B.jsp )
+
+
+==================================================
+
+A.html ==> B.html 
+       ==> tmp_B.html  (click btn -> B[child] )         页面结构 
+               
+                 所以当 父层 想要调用  跨域 子iframe 的 方法时 ,  因为 A.html 
+                 其实是掉用的是 tmp_B.html 的方法 ==> 然后 该方法会 直接 
+                 通过 A.html 获取 子iframe 中的 方法
+               
+        parent.window.iframe的name.在iframe中的 方法
+               
+               
+==================================================
+
+ B.html ==> tmp_A.html  (click btn -> A[main]  )         页面结构
+
+ 子 iframe 想要  给跨域父层 赋值 或者 传值 则 
+ parent.parent.在父层的方法 ()
+
+
+
+
+

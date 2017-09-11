@@ -10,7 +10,7 @@
 		  <p id="a">A.html main</p>  
 		  <p><input type="button" value="调用跨域 子iframe中的 方法()" onclick="exec_iframe()"></p>  
 		  
-		  <iframe src="http://localhost:8280/cms-yc-test/" name="myframe"
+		  <iframe src="http://localhost:8281/cms-yc-test/" name="myframe"
 		  	 width="500" height="300" frameborder="no"  style="border: 0px;"></iframe>  
 		  <br>
 		  <!--<input type="button" id="" value="点击"  onclick="javascript:window.open('execA.html');"/>-->
@@ -27,11 +27,11 @@
 			    if(typeof(exec_obj)=='undefined'){  
 			        exec_obj = document.createElement('iframe');  
 			        exec_obj.name = 'tmp_frame';  
-			        exec_obj.src = 'http://localhost:8280/cms-yc-test/execB.jsp';  
+			        exec_obj.src = 'http://localhost:8281/cms-yc-test/execB.jsp';  
 			        exec_obj.style.display = 'none';  
 			        document.body.appendChild(exec_obj);  
 			    }else{  
-			        exec_obj.src = 'http://localhost:8280/cms-yc-test/execB.jsp?' + Math.random();  
+			        exec_obj.src = 'http://localhost:8281/cms-yc-test/execB.jsp?' + Math.random();  
 			    }  
 			  }  
 		</script>

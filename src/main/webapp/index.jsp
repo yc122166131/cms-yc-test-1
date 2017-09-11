@@ -6,15 +6,22 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Test01</title>
 </head>
-<body>
-		<input type="button" value="跨域" onclick="openKuayu();"/>
-		<p id="replc">还没修改的数据</p>
+<body>	
+
+		<!--  js 跨域 相关  start -->
+			<input type="button" value="javascript跨域" onclick="openKuayu();"/>
+			<p id="replc">还没修改的数据 (一会要获取 跨域数据 进行修改 )</p>
+		<!-- end  js 跨域 相关   -->
+		
+		
 	</body>
 	
 	<script type="text/javascript">
-		
+			
+	
 			function openKuayu(){
 				window.open("kuayu.jsp")
 			}
+			
 	</script>
 </html>
