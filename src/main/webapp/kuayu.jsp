@@ -15,12 +15,24 @@
 		  <br>
 		  <!--<input type="button" id="" value="点击"  onclick="javascript:window.open('execA.html');"/>-->
 		  
+		<!-- <script type="text/javascript" src="/js/jquery-1.9.1.min.js"></script> -->
 		<script type="text/javascript">
-			function fMain(retStr){  
+		
+		
+			/* window.onload = function(){
+				alert(document.referrer);
+			} */
+		
+			function ycMain(retStr){  
 			    //alert('main function execute success'); 
 			    document.getElementById("a").innerText = retStr;
 			    window.opener.document.getElementById("replc").innerText = retStr; //window.open的 打开调用者 页面进行赋值 
-				window.close();
+				if(retStr){
+					location.href = '${pageContext.request.contextPath}/crossDomainDemo?cDflag='+retStr;
+				}else{
+					alert("未收到传回的 值!");
+				}
+			    window.close();
 			}
 			
 			 function exec_iframe(){  
@@ -30,9 +42,9 @@
 			        exec_obj.src = 'http://localhost:8281/cms-yc-test/execB.jsp';  
 			        exec_obj.style.display = 'none';  
 			        document.body.appendChild(exec_obj);  
-			    }else{  
+			    }/* else{  
 			        exec_obj.src = 'http://localhost:8281/cms-yc-test/execB.jsp?' + Math.random();  
-			    }  
+			    } */
 			  }  
 		</script>
 	</body>

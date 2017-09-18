@@ -16,8 +16,9 @@
 	 	;(function(win){ 
 			
 			var ycCrossDomain = {
+					
 				oo: function(st){
-					parent.parent.fMain(st);  // execute main function 
+					parent.parent.ycMain(st);  // execute main function 
 				},
 				getUrlParam : function(name){
 					  var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象  

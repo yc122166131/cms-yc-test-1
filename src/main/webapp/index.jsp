@@ -4,24 +4,39 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Test01</title>
+<title>Insert title here</title>
 </head>
-<body>	
+<body>
 
-		<!--  js 跨域 相关  start -->
-			<input type="button" value="javascript跨域" onclick="openKuayu();"/>
-			<p id="replc">还没修改的数据 (一会要获取 跨域数据 进行修改 )</p>
-		<!-- end  js 跨域 相关   -->
-		
-		
-	</body>
-	
+
+	<h1>xiangwozheyang deren !</h1>
+
+	<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
 	<script type="text/javascript">
-			
+		
 	
-			function openKuayu(){
-				window.open("kuayu.jsp")
-			}
-			
+			$(function(){
+				
+					var _token = "bysf201712";
+				
+					$.ajax({
+						type:"get",
+						url:"${pageContext.request.contextPath}/testRequestMapping/getT/"+_token,
+						data:{},
+						dataType:"json",
+						success:function(data){
+							console.log(data);
+							console.log(Object.prototype.toString.call(data));
+						},
+						error:function(msg){
+							console.log(msg);	
+						}
+						
+					});
+				
+			});
+		
+	
 	</script>
+</body>
 </html>
