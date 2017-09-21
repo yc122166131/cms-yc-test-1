@@ -10,6 +10,7 @@
 
 
 	<h1>xiangwozheyang deren !</h1>
+	<input   type="button"   value="测试activeMQ"  onclick="testActiveMQ();"/>
 
 	<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
 	<script type="text/javascript">
@@ -35,6 +36,21 @@
 					});
 				
 			});
+			
+			function testActiveMQ(){
+				 $.ajax({
+					 url:"${pageContext.request.contextPath}/testRequestMapping/testActiveMq.do",
+					 type:"post",
+					 success:function(data){
+						 console.log(data);
+					 },
+					 error:function(){
+						 alert("报错了!");
+					 }
+					 
+				 })
+			}
+		
 		
 	
 	</script>

@@ -5,10 +5,19 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Resource;
+import javax.jms.Destination;
+import javax.jms.JMSException;
+import javax.jms.Message;
+import javax.jms.Session;
+import javax.jms.TextMessage;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.jms.core.JmsTemplate;
+import org.springframework.jms.core.MessageCreator;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +33,10 @@ import com.yc.test01.pojo.People;
 public class TestAction {
 
 	
-	
+	@Autowired
+	private JmsTemplate jmsTemplate;
+	@Resource
+	private Destination topicDestination;
 	
 	@RequestMapping(value="/getT/{token}",method=RequestMethod.GET,produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
@@ -53,20 +65,15 @@ public class TestAction {
 			results.put("b2", p2);
 			results.put("c3", p3);
 			results.put("会有转机的", p4);
-			
-			/*Map<String,Integer> results = new HashMap<String,Integer>();
-			results.put("a1", 1);
-			results.put("a2", 2);
-			results.put("a3", 3);
-			results.put("会好的", _token);*/
 			return  ycCallback + "(" + JsonUtils.objectToJson(results) + ");";
 		}
+		
+		
 		/**
 		 * 正常的 请求(同域)
 		 */
 		else{ 	
 			
-		
 			List<String> list = new ArrayList<String>();
 			list.add("aaa");
 			list.add("aaa11");
@@ -75,24 +82,22 @@ public class TestAction {
 			list.add("aaa444");
 			return JsonUtils.objectToJson(list);
 		}
-		
-		
 	}
 	
 	
-	/*@RequestMapping(value="/token", method=RequestMethod.GET, 
-			//指定返回响应数据的content-type
-			produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
-			@ResponseBody
-			public String getUserByToken(@PathVariable String token, String callback) {
-				
-				//判断是否为jsonp请求
-				if (StringUtils.isNotBlank(callback)) {
-					return callback + "(" + JsonUtils.objectToJson(result) + ");";
-				}
-				return JsonUtils.objectToJson(result);
-			}
-	*/
 	
+	@RequestMapping(value="/testActiveMq",method=RequestMethod.POST)
+	public String  testActiveMq(HttpServletRequest request){
+		
+		jmsTemplate.send(topicDestination, new MessageCreator() {
+			@Override
+			public Message createMessage(Session session) throws JMSException {
+				TextMessage textMessage = session.createTextMessage("我传来的数据 ,您收到了吗?");
+				return textMessage;
+			}
+		});
+		
+		return "";
+	}
 	
 }

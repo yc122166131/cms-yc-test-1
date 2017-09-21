@@ -73,6 +73,9 @@
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-aspects</artifactId>
 			</dependency>
+			
+			
+			<!--  消息队列 activeMQ 整合 spring -->
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-jms</artifactId>
@@ -81,6 +84,10 @@
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-context-support</artifactId>
 			</dependency>
+			
+			
+			
+			
 	
    </dependencies>
    
@@ -91,7 +98,7 @@
 					<artifactId>tomcat7-maven-plugin</artifactId>
 					<configuration>
 						<path>/</path>
-						<port>8866</port>
+						<port>8867</port>
 					</configuration>
 				</plugin>
 			</plugins>
